@@ -6,6 +6,13 @@ const compression = require('compression');
 const path = require('path');
 require('dotenv').config();
 
+// Verificar variables de entorno críticas
+console.log('🔧 Verificando configuración...');
+console.log('📦 NODE_ENV:', process.env.NODE_ENV || 'development');
+console.log('🚪 PORT:', process.env.PORT || '3000');
+console.log('🗄️ MONGODB_URI configurado:', process.env.MONGODB_URI ? 'Sí' : 'No');
+console.log('🔐 JWT_SECRET configurado:', process.env.JWT_SECRET ? 'Sí' : 'No');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -76,8 +83,19 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Servir archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Configuración de MongoDB
+const MONGODB_URI = process.env.MONGODB_URI;
+
+if (!MONGODB_URI) {
+  console.error('❌ ERROR: MONGODB_URI no está configurado en las variables de entorno');
+  process.exit(1);
+}
+
+console.log('🔗 Conectando a MongoDB...');
+console.log('🌐 URI:', MONGODB_URI.replace(/\/\/([^:]+):([^@]+)@/, '//***:***@')); // Ocultar credenciales en logs
+
 // Conectar a MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/user_registration_db', {
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -130,4 +148,6 @@ app.use((error, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
   console.log(`📱 Aplicación disponible en: http://localhost:${PORT}`);
+  console.log(`🌍 Entorno: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🔐 JWT configurado: ${process.env.JWT_SECRET ? 'Sí' : 'No'}`);
 }); 
