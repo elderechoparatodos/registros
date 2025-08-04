@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profe Charles - Comunidad Educativa</title>
+    <meta name="description" content="Únete a la comunidad educativa del Profe Charles. Accede a herramientas, cursos y recursos exclusivos.">
+    <meta name="keywords" content="educación, profe charles, comunidad, aprendizaje, cursos, herramientas">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Montserrat+Alternates:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Profe Charles</span>
+            </div>
+            <nav class="nav">
+                <button class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link active">Inicio</a></li>
+                    <li><a href="#about" class="nav-link">Acerca de</a></li>
+                    <li><a href="#contact" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Únete a la <span class="highlight">Comunidad Educativa</span> del Profe Charles
+                    </h1>
+                    <p class="hero-description">
+                        Regístrate para acceder a herramientas, cursos y recursos educativos exclusivos. 
+                        Forma parte de nuestra comunidad y transforma tu aprendizaje con contenido de calidad.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="showLoginForm()">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Iniciar Sesión
+                        </button>
+                        <button class="btn btn-secondary" onclick="showRegisterForm()">
+                            <i class="fas fa-user-plus"></i>
+                            Registrarse
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-illustration">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Auth Forms Section -->
+        <section class="auth-section" id="authSection">
+            <div class="container">
+                <!-- Login Form -->
+                <div class="auth-form" id="loginForm">
+                    <div class="form-header">
+                        <h2><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</h2>
+                        <p>Ingresa tu documento para acceder</p>
+                    </div>
+                    <form id="loginFormElement" class="form">
+                        <div class="form-group">
+                            <label for="loginDocumento">
+                                <i class="fas fa-id-card"></i>
+                                Documento
+                            </label>
+                            <input 
+                                type="text" 
+                                id="loginDocumento" 
+                                name="documento" 
+                                placeholder="Ingresa tu documento"
+                                required
+                                pattern="[0-9A-Za-z]{5,20}"
+                                title="El documento debe tener entre 5 y 20 caracteres alfanuméricos"
+                            >
+                            <div class="form-error" id="loginDocumentoError"></div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Iniciar Sesión
+                        </button>
+                    </form>
+                    
+                    <div class="form-footer">
+                        <p>¿No tienes cuenta? <a href="#" onclick="showRegisterForm()">Regístrate aquí</a></p>
+                    </div>
+                </div>
+
+                <!-- Register Form -->
+                <div class="auth-form" id="registerForm" style="display: none;">
+                    <div class="form-header">
+                        <h2><i class="fas fa-user-plus"></i> Registrarse</h2>
+                        <p>Completa tus datos para crear tu cuenta</p>
+                    </div>
+                    <form id="registerFormElement" class="form">
+                        <div class="form-group">
+                            <label for="registerNombreCompleto">
+                                <i class="fas fa-user"></i>
+                                Nombre Completo
+                            </label>
+                            <input 
+                                type="text" 
+                                id="registerNombreCompleto" 
+                                name="nombreCompleto" 
+                                placeholder="Ingresa tu nombre completo"
+                                required
+                                minlength="2"
+                                maxlength="100"
+                            >
+                            <div class="form-error" id="registerNombreCompletoError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerDocumento">
+                                <i class="fas fa-id-card"></i>
+                                Documento
+                            </label>
+                            <input 
+                                type="text" 
+                                id="registerDocumento" 
+                                name="documento" 
+                                placeholder="Ingresa tu documento"
+                                required
+                                pattern="[0-9A-Za-z]{5,20}"
+                                title="El documento debe tener entre 5 y 20 caracteres alfanuméricos"
+                            >
+                            <div class="form-error" id="registerDocumentoError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerTelefono">
+                                <i class="fas fa-phone"></i>
+                                Teléfono
+                            </label>
+                            <input 
+                                type="tel" 
+                                id="registerTelefono" 
+                                name="telefono" 
+                                placeholder="Ingresa tu teléfono"
+                                required
+                                pattern="[\+]?[0-9\s\-\(\)]{7,15}"
+                                title="Ingresa un número de teléfono válido"
+                            >
+                            <div class="form-error" id="registerTelefonoError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerCorreo">
+                                <i class="fas fa-envelope"></i>
+                                Correo Electrónico
+                            </label>
+                            <input 
+                                type="email" 
+                                id="registerCorreo" 
+                                name="correo" 
+                                placeholder="Ingresa tu correo electrónico"
+                                required
+                            >
+                            <div class="form-error" id="registerCorreoError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerProfesion">
+                                <i class="fas fa-briefcase"></i>
+                                Profesión
+                            </label>
+                            <input 
+                                type="text" 
+                                id="registerProfesion" 
+                                name="profesion" 
+                                placeholder="Ingresa tu profesión"
+                                required
+                                minlength="2"
+                                maxlength="100"
+                            >
+                            <div class="form-error" id="registerProfesionError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerCiudad">
+                                <i class="fas fa-city"></i>
+                                Ciudad
+                            </label>
+                            <input 
+                                type="text" 
+                                id="registerCiudad" 
+                                name="ciudad" 
+                                placeholder="Ingresa tu ciudad"
+                                required
+                                minlength="2"
+                                maxlength="100"
+                            >
+                            <div class="form-error" id="registerCiudadError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerDepartamento">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Departamento
+                            </label>
+                            <div class="select-container">
+                                <select 
+                                    id="registerDepartamento" 
+                                    name="departamento" 
+                                    required
+                                    class="form-select"
+                                >
+                                    <option value="">Selecciona un departamento</option>
+                                </select>
+                                <i class="fas fa-chevron-down select-arrow"></i>
+                            </div>
+                            <div class="form-error" id="registerDepartamentoError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerNivelAcademico">
+                                <i class="fas fa-graduation-cap"></i>
+                                Nivel Académico
+                            </label>
+                            <div class="select-container">
+                                <select 
+                                    id="registerNivelAcademico" 
+                                    name="nivelAcademico" 
+                                    required
+                                    class="form-select"
+                                >
+                                    <option value="">Selecciona tu nivel académico</option>
+                                </select>
+                                <i class="fas fa-chevron-down select-arrow"></i>
+                            </div>
+                            <div class="form-error" id="registerNivelAcademicoError"></div>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <div class="consent-container">
+                                <label class="checkbox-label">
+                                    <input 
+                                        type="checkbox" 
+                                        id="registerConsentimiento" 
+                                        name="consentimiento" 
+                                        required
+                                    >
+                                    <!-- <span class="checkmark"></span> -->
+                                    <span class="consent-text">
+                                        Acepto el <a href="#" onclick="showConsentimiento()">consentimiento informado</a> para el tratamiento de mis datos personales
+                                    </span>
+                                </label>
+                                <div class="form-error" id="registerConsentimientoError"></div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-user-plus"></i>
+                            Registrarse
+                        </button>
+                    </form>
+                    
+                    <div class="form-footer">
+                        <p>¿Ya tienes cuenta? <a href="#" onclick="showLoginForm()">Inicia sesión aquí</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Section -->
+        <section class="success-section" id="successSection" style="display: none;">
+            <div class="container">
+                <div class="success-content">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>¡Bienvenido!</h2>
+                    <p id="successMessage">Tu cuenta ha sido creada exitosamente.</p>
+                    <div class="user-info" id="userInfo"></div>
+                    <div class="redirect-info">
+                        <p>Haz clic en el botón para acceder a la plataforma educativa</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="redirectNow()">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ir Ahora
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetApp()" style="margin-left: 10px;">
+                        <i class="fas fa-home"></i>
+                        Volver al Inicio
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <h2 id="about-title">Acerca de la Comunidad del Profe Charles</h2>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3>Experiencia</h3>
+                        <p>Más de 10 años transformando la educación con metodologías innovadoras.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Herramientas</h3>
+                        <p>Accede a recursos y herramientas educativas exclusivas y de calidad.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Comunidad</h3>
+                        <p>Únete a una comunidad activa de estudiantes y educadores apasionados.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2>Contacto</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:soporte@elprofecharles.com" class="contact-link">
+                            <p>soporte@elprofecharles.com</p>
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/573028355255?text=Hola%20Profe%20Charles,%20me%20interesa%20conocer%20más%20sobre%20tus%20cursos%20y%20herramientas%20educativas." target="_blank" class="contact-link">
+                            <p>+57 302 835 5255</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Profe Charles</h3>
+                    <p>Transformando la educación con herramientas y recursos innovadores.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#about">Acerca de</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#" onclick="showPrivacyPolicy()">Política de Privacidad</a></li>
+                        <li><a href="#" onclick="showTerms()">Términos de Servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Profe Charles. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Procesando...</p>
+        </div>
+    </div>
+
+    <!-- Modal for Consentimiento -->
+    <div class="modal" id="consentimientoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Consentimiento Informado</h3>
+                <button class="modal-close" onclick="closeModal('consentimientoModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Al registrarte en nuestra plataforma, consientes que:</p>
+                <ul>
+                    <li>Tus datos personales serán utilizados para gestionar tu cuenta y acceso a plataformas educativas.</li>
+                    <li>Podemos compartir información básica con plataformas educativas asociadas.</li>
+                    <li>Utilizaremos tus datos para mejorar nuestros servicios y ofrecer contenido personalizado.</li>
+                    <li>Puedes solicitar la eliminación de tus datos en cualquier momento.</li>
+                </ul>
+                <p>Para más información, consulta nuestra <a href="#" onclick="showPrivacyPolicy()">Política de Privacidad</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html> 
